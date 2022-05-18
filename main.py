@@ -50,7 +50,16 @@ def ejecutarOpcion(opcion):
         except Error as ex:
             print(f"Ocurrio un error {ex}")
     elif opcion == 3:
-        print("Actualizar")
+        try:
+            estudiantes = dao.listarDatos()
+            if len(estudiantes)>0:
+                estudiantes = funciones.pedeirDatosActualizacion(estudiantes)
+                if estudiantes:
+                    dao.actualizarEstudiante(estudiantes)
+                else:
+                    print(f"codigo de estudiantate a actualizar no encontrado: {estudiantes}")
+        except Error as ex:
+            print(f"Error al intentar eliminar {ex}")    
     elif opcion == 4:
         try:
             estudiantes = dao.listarDatos()

@@ -30,6 +30,25 @@ def pedirDatosEliminacion(estudiantes):
     
 
     return codigoEliminar
+def pedeirDatosActualizacion(estudiantes):
+    listarDatos(estudiantes)
+    
+     
+    exitesCodigo = False
+    codigoActualizar = int(input("ingrese el id del estudiante a editar :\n"))
+    for estu in estudiantes:
+        if estu[0] == codigoActualizar:
+            exitesCodigo = True
+            break
+    if exitesCodigo:
+        nombre = input("Ingreso nombre:\n ")
+        apellido =input("Ingreso apellidos:\n ")
+        edad = int(input("Ingresa edad:\n"))
+        curso = input("Ingreso curso:\n")
+        estado = input("Ingrese estado:\n")
+        estudiantes = (nombre,apellido,edad,curso,estado,codigoActualizar)
+        
+    else:
+        estudiantes = None 
 
-
-
+    return estudiantes

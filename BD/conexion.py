@@ -36,6 +36,21 @@ class DAO():
                 print("Estudiante registrado\n")
             except Error as ex:
                 print(f"Error al intentar la conexión {ex}")  
+    def actualizarEstudiante(self,estudiantes):
+          if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sql =" UPDATE estudiantes  SET  nombre = '{0}',apellido = '{1}', edad = '{2}' , curso = '{3}', estado = '{4}' WHERE  idEstudiante = {5}"
+                cursor.execute(sql.format(estudiantes[0],estudiantes[1],estudiantes[2],estudiantes[3],estudiantes[4],estudiantes[5]))
+                self.conexion.commit()
+                print("Estudiante actualizado \n")
+            except Error as ex:
+                print(f"Error al intentar la conexión {ex}")  
+
+
+
+
+
 
     def eliminarEstudiante(self,codigoEliminar):
         if self.conexion.is_connected():
