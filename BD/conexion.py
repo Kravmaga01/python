@@ -30,9 +30,20 @@ class DAO():
         if self.conexion.is_connected():
             try:
                 cursor = self.conexion.cursor()
-                sql ="INSERT INTO  estudiantes (id,nombre,apellido,edad,curso, estado) values('{0}','{1}','{2}','{3}','{4}','{5}')"
-                cursor.execute(sql.format(estudiantes[0],estudiantes[1],estudiantes[2],estudiantes[3],estudiantes[4],estudiantes[5]))
+                sql ="INSERT INTO  estudiantes (nombre,apellido,edad,curso,estado) values('{0}','{1}','{2}','{3}','{4}')"
+                cursor.execute(sql.format(estudiantes[0],estudiantes[1],estudiantes[2],estudiantes[3],estudiantes[4]))
                 self.conexion.commit()
                 print("Estudiante registrado\n")
-            except:
-                print("Error al intentar la conexión ")  
+            except Error as ex:
+                print(f"Error al intentar la conexión {ex}")  
+
+    def eliminarEstudiante(self,codigoEliminar):
+        if self.conexion.is_connected():
+            try:
+                cursor = self.conexion.cursor()
+                sql =" DELETE FROM estudiantes WHERE idEstudiante = {0} "
+                cursor.execute(sql.format(codigoEliminar))
+                self.conexion.commit()
+                print("Estuidante eliminado\n")
+            except Error as ex:
+                print(f"Error al intentar la conexión {ex}")

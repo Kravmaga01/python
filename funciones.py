@@ -1,3 +1,6 @@
+import re
+
+
 def listarDatos(estudiantes):
     print("\n Estudiantes: \n")
     contador = 1
@@ -6,11 +9,27 @@ def listarDatos(estudiantes):
         print(datos.format(contador, cur[0], cur[1], cur[2], cur[3], cur[4], cur[5]))
         print(" ")
 def perdirDatosRegistro():
-    Id = input("Ingreso cóndigo:\n ")
     nombre = input("Ingreso nombre:\n ")
     apellido =input("Ingreso apellidos:\n ")
     edad = int(input("Ingresa edad:\n"))
-    curso = input("Ingreso curso\n")
-    estado = input("Ingrese estado\n")
-    estudiante = (Id,nombre,apellido,edad,curso,estado)
-    return estudiante
+    curso = input("Ingreso curso:\n")
+    estado = input("Ingrese estado:\n")
+    estudiantes = (nombre,apellido,edad,curso,estado)
+    return estudiantes
+def pedirDatosEliminacion(estudiantes):
+    listarDatos(estudiantes)
+    exitesCodigo = False
+    codigoEliminar = int(input("ingrese el id del estudiante a eliminar:\n"))
+    for estu in estudiantes:
+        if estu[0] == codigoEliminar:
+            exitesCodigo = True
+            break
+    
+    if not exitesCodigo:
+        codigoEliminar = ""
+    
+
+    return codigoEliminar
+
+
+
